@@ -6,7 +6,7 @@
 ## Integrantes
 Juan David Santoyo Tejada - 118849
 Cristian Andres Quintero Rodriguez - 112281
-Monica Sofia Aljure - 
+Monica Sofia Aljure - 87815
 
 ## Documentación
 
@@ -45,7 +45,90 @@ Se accedió a la interfaz web desde un navegador mediante:
 ```
 http://<IP_RASPBERRY>:1880
 ```
+3. Instalación del Dashboard
 
+Se instaló el paquete de dashboard para habilitar elementos gráficos:
 
+```bash
+cd ~/.node-red
+npm install node-red-dashboard
+```
+
+4. Creación del flujo
+
+Se implementó un flujo con los siguientes nodos:
+
+* `ui_colour_picker`: permite seleccionar un color.
+* `function`: convierte el valor hexadecimal a RGB.
+* `ui_text`: muestra los valores RGB en la interfaz.
+* `file`: guarda los valores en un archivo de texto.
+* `debug`: muestra los datos en la consola de depuración.
+
+5. Conversión de datos
+
+El color seleccionado se recibe en formato hexadecimal y se convierte a RGB mediante el siguiente código:
+
+```javascript
+let hex = msg.payload;
+
+// Convertir HEX a RGB
+let r = parseInt(hex.substring(1,3), 16);
+let g = parseInt(hex.substring(3,5), 16);
+let b = parseInt(hex.substring(5,7), 16);
+
+msg.payload = `R:${r}, G:${g}, B:${b}`;
+return msg;
+```
+6. Visualización
+
+Se accedió al dashboard mediante:
+
+```
+http://<IP_RASPBERRY>:1880/ui
+```
+
+Donde se visualiza el selector de color y los valores RGB generados.
+
+7. Almacenamiento de datos
+
+Los valores RGB se almacenan en el archivo:
+
+```
+/home/pi/rgb.txt
+```
+
+Cada vez que se selecciona un color, se agrega una nueva línea con los valores correspondientes.
+
+Resultados obtenidos
+
+* Se logró implementar correctamente un flujo funcional en Node-RED.
+* Se pudo seleccionar colores de manera interactiva desde una interfaz web.
+* Los valores fueron convertidos exitosamente de formato hexadecimal a RGB.
+* Se visualizaron los datos en tiempo real en el dashboard.
+* Se almacenaron correctamente los valores en un archivo de texto.
+
+Ejemplo de salida:
+
+```
+R:255, G:0, B:0
+R:120, G:45, B:200
+
+Dificultades encontradas
+
+* Problemas de conectividad de red (cambio de IP de la Raspberry Pi).
+* Errores en la instalación de Node-RED por falta de memoria.
+* Fallos en la instalación del dashboard por problemas de red.
+* Configuración incorrecta del nodo `colour picker` (formato HEX en lugar de RGB).
+* Error de configuración de nodos por falta de asignación de `Group` y `Tab`.
 
 ## Conclusiones
+
+Conclusiones
+
+El uso de Node-RED facilita la creación de aplicaciones interactivas mediante programación visual. Se logró integrar correctamente la adquisición de datos, su procesamiento y almacenamiento. Este laboratorio demuestra cómo Node-RED puede ser utilizado para el desarrollo rápido de interfaces IoT y la integración con scripts en Python para análisis posterior.
+
+Archivos del proyecto
+
+* `lab04_flow.json`: flujo de Node-RED exportado.
+* `rgb.txt`: archivo generado con los valores RGB.
+* `README.md`: documentación del laboratorio.
