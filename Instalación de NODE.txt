@@ -1,0 +1,130 @@
+Instalación de NODE:
+
+Running Node-RED install for user pi at /home/pi on raspbian
+
+
+This can take 20-30 minutes on the slower Pi versions - please wait.
+
+  Stop Node-RED                       ✔
+  Remove old version of Node-RED      ✔
+  Node option not specified           :   --node20, --node22 or --node24
+  Leave existing Node.js              :   v22.15.0   Npm 10.9.2
+  Clean npm cache                     -
+  Install Node-RED core               ✔   4.1.7
+  Move global nodes to local          -
+  Leave existing nodes                -
+  Install extra Pi nodes              ✔
+  Add shortcut commands               ✔
+  Update systemd script               ✔
+
+
+Any errors will be logged to   /var/log/nodered-install.log
+All done.
+You can now start Node-RED with the command  node-red-start
+  or using the icon under   Menu / Programming / Node-RED
+Then point your browser to localhost:1880 or http://{your_pi_ip-address}:1880
+
+Started :  Sun 22 Mar 18:53:06 -05 2026
+Finished:  Sun 22 Mar 18:58:32 -05 2026
+
+**********************************************************************************
+ ### WARNING ###
+ DO NOT EXPOSE NODE-RED TO THE OPEN INTERNET WITHOUT SECURING IT FIRST
+
+ Even if your Node-RED doesn't have anything valuable, (automated) attacks will
+ happen and could provide a foothold in your local network
+
+ Follow the guide at https://nodered.org/docs/user-guide/runtime/securing-node-red
+ to setup security.
+
+ ### ADDITIONAL RECOMMENDATIONS ###
+  - Remove the /etc/sudoers.d/010_pi-nopasswd file to require entering your password
+    when performing any sudo/root commands:
+
+      sudo rm -f /etc/sudoers.d/010_pi-nopasswd
+
+  - You can customise the initial settings by running:
+
+      node-red admin init
+
+**********************************************************************************
+
+
+Node-RED Settings File initialisation
+=====================================
+This tool will help you create a Node-RED settings file.
+
+✔ Settings file · /home/pi/.node-red/settings.js
+
+Share Anonymouse Usage Information
+==================================
+✔ Node-RED can notify you when there is a new version available.
+This ensures you keep up to date with the latest features and fixes.
+This requires sending anonymised data back to the Node-RED team.
+It does not include any details of your flows or users.
+For full information on what information is collected and how it is used,
+please see https://nodered.org/docs/telemetry
+ · No, do not send my usage data
+
+User Security
+=============
+✔ Do you want to setup user security? · No
+
+Projects
+========
+The Projects feature allows you to version control your flow using a local git repository.
+
+✔ Do you want to enable the Projects feature? · No
+
+Flow File settings
+==================
+✔ Enter a name for your flows file · flows.json
+✔ Provide a passphrase to encrypt your credentials file ·
+
+Editor settings
+===============
+? Select a theme for the editor. To use any theme other than "default", you will need to install @node-red-contrib-themes/theme-collection in your Node-RED user directory. …
+✔ Select a theme for the editor. To use any theme other than "default", you will need to install @node-red-contrib-themes/theme-collection in your Node-RED user directory. · default
+
+✔ Select the text editor component to use in the Node-RED Editor · monaco (default)
+
+Node settings
+=============
+✔ Allow Function nodes to load external modules? (functionExternalModules) · Yes
+
+
+Settings file written to /home/pi/.node-red/settings.js
+pi@raspberry123:~ $ node-red-start
+
+Start Node-RED
+
+Once Node-RED has started, point a browser at http://10.244.100.217:1880
+On Pi Node-RED works better with the Firefox or Chrome browser
+
+Use   node-red-stop                          to stop Node-RED
+Use   node-red-start                         to start Node-RED again
+Use   node-red-log                           to view the recent log output
+Use   sudo systemctl enable nodered.service  to autostart Node-RED at every boot
+Use   sudo systemctl disable nodered.service to disable autostart on boot
+
+To find more nodes and example flows - go to http://flows.nodered.org
+
+Starting as a systemd service.
+nodered.service: Referenced but unset environment variable evaluates to an empty string: NODE_RED_OPTIONS
+22 Mar 19:03:21 - [info]
+Welcome to Node-RED
+===================
+22 Mar 19:03:21 - [info] Node-RED version: v4.1.7
+22 Mar 19:03:21 - [info] Node.js  version: v22.15.0
+22 Mar 19:03:21 - [info] Linux 6.12.62+rpt-rpi-v7 arm LE
+22 Mar 19:03:22 - [info] Loading palette nodes
+22 Mar 19:03:28 - [info] Settings file  : /home/pi/.node-red/settings.js
+22 Mar 19:03:28 - [info] Context store  : 'default' [module=memory]
+22 Mar 19:03:28 - [info] User directory : /home/pi/.node-red
+22 Mar 19:03:28 - [warn] Projects disabled : editorTheme.projects.enabled=false
+22 Mar 19:03:28 - [info] Flows file     : /home/pi/.node-red/flows.json
+22 Mar 19:03:28 - [info] Creating new flow file
+22 Mar 19:03:28 - [warn] Using unencrypted credentials
+22 Mar 19:03:28 - [info] Starting flows
+22 Mar 19:03:29 - [info] Started flows
+22 Mar 19:03:29 - [info] Server now running at http://127.0.0.1:1880/
